@@ -1,0 +1,103 @@
+version: 1
+# Other entries
+dn: ou=people,${SLAPD_FULL_DOMAIN}
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+
+dn: cn=GitLab,ou=people,${SLAPD_FULL_DOMAIN}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: GitLab
+displayName: GitLab
+givenName: GitLab
+mail: gitlab@${SLAPD_DOMAIN}
+sn: GitLab
+uid: gitlab
+userPassword:: ${GITLAB_PASSWORD}
+
+dn: cn=Jenkins,ou=people,${SLAPD_FULL_DOMAIN}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Jenkins
+displayName: Jenkins
+givenName: Jenkins
+mail: jenkins@${SLAPD_DOMAIN}
+sn: Jenkins
+uid: jenkins
+userPassword:: ${JENKINS_PASSWORD}
+
+dn: cn=Nexus,ou=people,${SLAPD_FULL_DOMAIN}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Nexus
+displayName: Nexus
+givenName: Nexus
+mail: nexus@${SLAPD_DOMAIN}
+sn: Nexus
+uid: nexus
+userPassword:: ${NEXUS_PASSWORD}
+
+dn: cn=${INITIAL_ADMIN_USER},ou=people,${SLAPD_FULL_DOMAIN}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: ${INITIAL_ADMIN_USER}
+displayName: Admin User
+givenName: Admin
+mail: ${INITIAL_ADMIN_USER}@${SLAPD_DOMAIN}
+sn: User
+uid: ${INITIAL_ADMIN_USER}
+userPassword:: ${INITIAL_ADMIN_PASSWORD}
+
+dn: ou=groups,${SLAPD_FULL_DOMAIN}
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: cn=administrators,ou=groups,${SLAPD_FULL_DOMAIN}
+objectClass: groupOfNames
+objectClass: top
+cn: administrators
+member: cn=jenkins,ou=people,${SLAPD_FULL_DOMAIN}
+member: cn=${INITIAL_ADMIN_USER},ou=people,${SLAPD_FULL_DOMAIN}
+
+dn: cn=sonar-administrators,ou=groups,${SLAPD_FULL_DOMAIN}
+objectClass: groupOfNames
+objectClass: top
+cn: sonar-administrators
+member: cn=${INITIAL_ADMIN_USER},ou=people,${SLAPD_FULL_DOMAIN}
+
+dn: cn=sonar-users,ou=groups,${SLAPD_FULL_DOMAIN}
+objectClass: groupOfNames
+objectClass: top
+cn: sonar-users
+member: cn=${INITIAL_ADMIN_USER},ou=people,${SLAPD_FULL_DOMAIN}
+
+dn: cn=nexus-admin,ou=groups,${SLAPD_FULL_DOMAIN}
+objectClass: groupOfNames
+objectClass: top
+cn: nexus-admin
+member: cn=nexus,ou=people,${SLAPD_FULL_DOMAIN}
+member: cn=${INITIAL_ADMIN_USER},ou=people,${SLAPD_FULL_DOMAIN}
+
+dn: cn=nexus-developer,ou=groups,${SLAPD_FULL_DOMAIN}
+objectClass: groupOfNames
+objectClass: top
+cn: nexus-developer
+member: cn=nexus,ou=people,${SLAPD_FULL_DOMAIN}
+member: cn=${INITIAL_ADMIN_USER},ou=people,${SLAPD_FULL_DOMAIN}
+
+dn: cn=nexus-deployment,ou=groups,${SLAPD_FULL_DOMAIN}
+objectClass: groupOfNames
+objectClass: top
+cn: nexus-deployment
+member: cn=nexus,ou=people,${SLAPD_FULL_DOMAIN}
+member: cn=${INITIAL_ADMIN_USER},ou=people,${SLAPD_FULL_DOMAIN}

@@ -1,0 +1,10 @@
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModuleLoad: pw-pbkdf2.so
+
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModuleLoad: pw-pbkdf2.la
+

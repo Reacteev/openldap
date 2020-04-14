@@ -1,0 +1,49 @@
+version: 1
+# Define password policy
+dn: ou=policies,${SLAPD_FULL_DOMAIN}
+objectClass: organizationalUnit
+ou: policies
+
+dn: cn=default,ou=policies,${SLAPD_FULL_DOMAIN}
+objectClass: applicationProcess
+objectClass: pwdPolicy
+objectClass: pwdPolicyChecker
+cn: default
+pwdAttribute: userPassword
+pwdCheckQuality: 2
+pwdCheckModule: check_password.so
+pwdFailureCountInterval: 1800
+# 7 days
+pwdExpireWarning: 604800
+pwdGraceAuthNLimit: 5
+pwdInHistory: 5
+pwdLockout: TRUE
+# 30 minutes
+pwdLockoutDuration: 1800
+# 365 days
+pwdMaxAge: 31536000
+pwdMaxFailure: 5
+pwdMinAge: 0
+pwdAllowUserChange: TRUE
+pwdMinLength: 8
+
+
+dn: cn=service-users,ou=policies,${SLAPD_FULL_DOMAIN}
+objectClass: applicationProcess
+objectClass: pwdPolicy
+objectClass: pwdPolicyChecker
+cn: service-users
+pwdAttribute: userPassword
+pwdCheckQuality: 2
+pwdCheckModule: check_password.so
+pwdFailureCountInterval: 1800
+pwdInHistory: 5
+pwdLockout: TRUE
+# 30 minutes
+pwdLockoutDuration: 1800
+# never
+pwdMaxAge: 0
+pwdMaxFailure: 5
+pwdMinAge: 0
+pwdAllowUserChange: TRUE
+

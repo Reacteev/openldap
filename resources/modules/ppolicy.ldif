@@ -1,0 +1,14 @@
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModuleLoad: ppolicy.la
+
+dn: olcOverlay=ppolicy,olcDatabase={1}hdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcPPolicyConfig
+olcOverlay: ppolicy
+olcPPolicyDefault: PPOLICY_DN
+olcPPolicyHashCleartext: TRUE
+olcPPolicyForwardUpdates: FALSE
+olcPPolicyUseLockout: TRUE
+
