@@ -18,10 +18,10 @@ IFS=$OLD_IFS
 
 for ldif in "${ldifs[@]}"; do
     echo "Loading ldif : $ldif"
-    LDAP_LDIFF="${SLAPD_LDIF_BASE}/${ldif}"
+    LDAP_LDIFF="${SLAPD_LDIF_BASE}/$(basename $ldif)"
     if [ -r /run/secrets/$ldif ] && [ ! -r $LDAP_LDIFF ]
     then
-      cp -a /run/secrets/$ldif $LDAP_LDIFF
+      cp -p /run/secrets/$ldif $LDAP_LDIFF
     fi
 
     # resolve environment variables in ldif file    
